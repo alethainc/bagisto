@@ -63,6 +63,8 @@ RUN a2enmod rewrite
 
 # Install dependencies
 USER $user
+# Update composer dependencies first
+RUN composer update league/flysystem-aws-s3-v3 --with-dependencies
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 RUN npm install && npm run build
 
