@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      args:
+        user: bagisto
+        uid: 1000
+        container_project_path: /var/www/html/bagisto
+    ports:
+      - "80:80"
+    environment:
+      DB_HOST: your-rds-endpoint.region.rds.amazonaws.com
+      DB_PORT: 3306
+      DB_DATABASE: bagisto
+      DB_USERNAME: your_rds_username
+      DB_PASSWORD: your_rds_password
+    volumes:
+      - ./storage:/var/www/html/bagisto/storage
+      - ./bootstrap/cache:/var/www/html/bagisto/bootstrap/cache 
